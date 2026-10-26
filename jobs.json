@@ -1,0 +1,457 @@
+{
+  "updatedAt": "2026-10-26",
+  "applications": [
+    {
+      "id": "b480xsdl967dekiyrd1m",
+      "company": "中国大唐",
+      "role": "电力交易管培生",
+      "city": "",
+      "appliedAt": "2026-10-26",
+      "outcome": "active",
+      "events": [
+        {
+          "stage": 0,
+          "date": "2026-10-26",
+          "done": true,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "yc9uod0os94a19kprcl1",
+      "company": "迈瑞动物医疗",
+      "role": "计划工程师",
+      "city": "",
+      "appliedAt": "2026-10-26",
+      "outcome": "active",
+      "events": [
+        {
+          "stage": 0,
+          "date": "2026-10-26",
+          "done": true,
+          "note": ""
+        },
+        {
+          "stage": 2,
+          "date": "2026-10-27",
+          "done": false,
+          "note": "10:30"
+        }
+      ]
+    },
+    {
+      "id": "ryvsfoxvtt2qwp3raa19",
+      "company": "长沙城发集团",
+      "role": "投资管理",
+      "city": "长沙",
+      "appliedAt": "2026-10-26",
+      "outcome": "active",
+      "events": [
+        {
+          "stage": 0,
+          "date": "2026-10-26",
+          "done": true,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "7an6kokob14zo7w37z1j",
+      "company": "湖南省国资委英培计划",
+      "role": "高速公路/钢铁集团",
+      "city": "",
+      "appliedAt": "2026-10-26",
+      "outcome": "active",
+      "events": [
+        {
+          "stage": 0,
+          "date": "2026-10-26",
+          "done": true,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "4zp1684iys5o2l4q4gjh",
+      "company": "国家电力集团",
+      "role": "数据/研发/功率预测",
+      "city": "",
+      "appliedAt": "2026-10-23",
+      "outcome": "active",
+      "events": [
+        {
+          "stage": 0,
+          "date": "2026-10-23",
+          "done": true,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "24kucvvu6k9ttse1r7p3",
+      "company": "中信保诚人寿保险有限公司",
+      "role": "精算类",
+      "city": "北京",
+      "appliedAt": "2026-10-23",
+      "outcome": "active",
+      "events": [
+        {
+          "stage": 0,
+          "date": "2026-10-23",
+          "done": true,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "78k4djrovjs6vbqq646n",
+      "company": "国家电网",
+      "role": "华中/华东/西北",
+      "city": "",
+      "appliedAt": "2026-10-23",
+      "outcome": "active",
+      "events": [
+        {
+          "stage": 0,
+          "date": "2026-10-23",
+          "done": true,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "yg892wyqnwzkjzykosxp",
+      "company": "中国平安产险深圳分公司",
+      "role": "管培生",
+      "city": "深圳",
+      "appliedAt": "2026-10-22",
+      "outcome": "active",
+      "events": [
+        {
+          "stage": 0,
+          "date": "2026-10-22",
+          "done": true,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "galsy7ymvauy8fgjwxih",
+      "company": "中国中信金融资产管理股份有限公司",
+      "role": "管培生/湖南业务岗",
+      "city": "北京",
+      "appliedAt": "2026-10-15",
+      "outcome": "active",
+      "events": [
+        {
+          "stage": 0,
+          "date": "2026-10-15",
+          "done": true,
+          "note": ""
+        },
+        {
+          "stage": 1,
+          "date": "2026-10-25",
+          "done": true,
+          "note": "19:00-21:00"
+        }
+      ]
+    },
+    {
+      "id": "wno9c45a4p1hyz2pahy5",
+      "company": "中国人寿财险数字业务运营中心",
+      "role": "数智支持岗（长沙）",
+      "city": "长沙",
+      "appliedAt": "2026-10-15",
+      "outcome": "active",
+      "events": [
+        {
+          "stage": 0,
+          "date": "2026-10-15",
+          "done": true,
+          "note": ""
+        },
+        {
+          "stage": 1,
+          "date": "2026-10-24",
+          "done": true,
+          "note": "11-12点牛客科技笔试"
+        },
+        {
+          "stage": 1,
+          "date": "2026-10-24",
+          "done": true,
+          "note": "20-21:30在线笔试"
+        }
+      ]
+    },
+    {
+      "id": "uptecx4zhmpcvz3e6wl0",
+      "company": "五矿湖南",
+      "role": "数学建模工程师",
+      "city": "长沙",
+      "appliedAt": "2026-10-14",
+      "outcome": "active",
+      "events": [
+        {
+          "stage": 0,
+          "date": "2026-10-14",
+          "done": true,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "8nlkcx2iuba1o7pbs00u",
+      "company": "天隼实验室",
+      "role": "人工智能相关",
+      "city": "长沙",
+      "appliedAt": "2026-10-14",
+      "outcome": "active",
+      "events": [
+        {
+          "stage": 0,
+          "date": "2026-10-14",
+          "done": true,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "yk4gpgtijlw3givav6te",
+      "company": "迈瑞医疗",
+      "role": "医学图像处理研究工程师",
+      "city": "深圳",
+      "appliedAt": "2026-10-14",
+      "outcome": "active",
+      "events": [
+        {
+          "stage": 0,
+          "date": "2026-10-14",
+          "done": true,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "sg2ltlte1tpltl5k6fui",
+      "company": "五矿北京",
+      "role": "研究岗",
+      "city": "北京",
+      "appliedAt": "2026-10-14",
+      "outcome": "active",
+      "events": [
+        {
+          "stage": 0,
+          "date": "2026-10-14",
+          "done": true,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "4zvj2qwp1qczsy4j0k9p",
+      "company": "中远海运",
+      "role": "人工智能高级业务员",
+      "city": "上海",
+      "appliedAt": "2026-10-14",
+      "outcome": "active",
+      "events": [
+        {
+          "stage": 0,
+          "date": "2026-10-14",
+          "done": true,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "1t6gd9bbaubrvzzacqtc",
+      "company": "深智城集团",
+      "role": "AI应用研究岗",
+      "city": "深圳",
+      "appliedAt": "2026-10-14",
+      "outcome": "active",
+      "events": [
+        {
+          "stage": 0,
+          "date": "2026-10-14",
+          "done": true,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "gwlqpz0qfsfcuhe9kk6x",
+      "company": "中储智运",
+      "role": "AI开发工程师",
+      "city": "南京",
+      "appliedAt": "2026-10-14",
+      "outcome": "active",
+      "events": [
+        {
+          "stage": 0,
+          "date": "2026-10-14",
+          "done": true,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "b5iynnfbtn7ylu7gxrxh",
+      "company": "华润电力",
+      "role": "字化开发工程师(算法研发)JSYJY/管理培训生",
+      "city": "深圳",
+      "appliedAt": "2026-10-13",
+      "outcome": "active",
+      "events": [
+        {
+          "stage": 0,
+          "date": "2026-10-13",
+          "done": true,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "xjqasozxgqajjvj82k6y",
+      "company": "财信金控",
+      "role": "数据开发岗",
+      "city": "长沙",
+      "appliedAt": "2026-10-12",
+      "outcome": "active",
+      "events": [
+        {
+          "stage": 0,
+          "date": "2026-10-12",
+          "done": true,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "inu0f9awb63drlo12j4a",
+      "company": "湖南银行总行",
+      "role": "总行管培生",
+      "city": "长沙",
+      "appliedAt": "2026-10-12",
+      "outcome": "active",
+      "events": [
+        {
+          "stage": 0,
+          "date": "2026-10-12",
+          "done": true,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "ygffty35kg0iy0g0ost7",
+      "company": "联通华盛",
+      "role": "数字化转型IT支持",
+      "city": "广州",
+      "appliedAt": "2026-10-12",
+      "outcome": "active",
+      "events": [
+        {
+          "stage": 0,
+          "date": "2026-10-12",
+          "done": true,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "vvfcznnytstpj3i21is1",
+      "company": "中央国债登记结算有限公司",
+      "role": "业务综合类",
+      "city": "深圳",
+      "appliedAt": "2026-10-12",
+      "outcome": "active",
+      "events": [
+        {
+          "stage": 0,
+          "date": "2026-10-12",
+          "done": true,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "xem7l6afriz0wr12rot4",
+      "company": "交通银行",
+      "role": "储备生-数据研究",
+      "city": "长沙",
+      "appliedAt": "2026-10-09",
+      "outcome": "active",
+      "events": [
+        {
+          "stage": 0,
+          "date": "2026-10-09",
+          "done": true,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "1b78xz6dloqlicoshvy4",
+      "company": "国开行",
+      "role": "金融投研",
+      "city": "长沙",
+      "appliedAt": "2026-10-09",
+      "outcome": "active",
+      "events": [
+        {
+          "stage": 0,
+          "date": "2026-10-09",
+          "done": true,
+          "note": ""
+        },
+        {
+          "stage": 1,
+          "date": "2026-11-01",
+          "done": false,
+          "note": "14:30-17:00线下"
+        }
+      ]
+    },
+    {
+      "id": "c3q9uldifucv4lrkeh3f",
+      "company": "电科48所",
+      "role": "算法工程师",
+      "city": "长沙",
+      "appliedAt": "2026-10-09",
+      "outcome": "active",
+      "events": [
+        {
+          "stage": 0,
+          "date": "2026-10-09",
+          "done": true,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "5w0vi0vsweibpnzz26t0",
+      "company": "招商银行",
+      "role": "应用开发/数据研发",
+      "city": "深圳",
+      "appliedAt": "2026-10-08",
+      "outcome": "active",
+      "events": [
+        {
+          "stage": 0,
+          "date": "2026-10-08",
+          "done": true,
+          "note": ""
+        },
+        {
+          "stage": 1,
+          "date": "2026-10-16",
+          "done": true,
+          "note": "19:00-21:30"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>王煜森 · 求职进度</title>
+<style>
+:root{--bg:#f6f5f1;--card:#fff;--ink:#1d1d1b;--mute:#7a776f;--line:#e4e1d8;--accent:#2f6b4f;--accent-soft:#e3efe8;--warn:#b5651d;--warn-soft:#f8ebdc;--bad:#9b3b3b}
+@media (prefers-color-scheme:dark){:root{--bg:#161614;--card:#201f1c;--ink:#ecebe6;--mute:#9a978d;--line:#34322d;--accent:#7cc39c;--accent-soft:#22342a;--warn:#e0a466;--warn-soft:#3a2c1e;--bad:#e08a8a}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:32px 16px 60px}
+header h1{margin:0;font-size:26px;letter-spacing:.02em}
+header p{margin:6px 0 0;color:var(--mute);font-size:13px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:24px 0}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.stat b{display:block;font-size:24px;font-variant-numeric:tabular-nums}
+.stat span{color:var(--mute);font-size:12px}
+.section-title{font-size:13px;color:var(--mute);margin:28px 0 10px;letter-spacing:.08em}
+.upcoming{background:var(--warn-soft);border-radius:10px;padding:12px 16px}
+.upcoming div{padding:4px 0;font-size:14px}
+.upcoming .d{display:inline-block;min-width:92px;font-weight:600;color:var(--warn);font-variant-numeric:tabular-nums}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.filters button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:5px 12px;font-size:13px;cursor:pointer}
+.filters button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.item{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:10px}
+.top{display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap}
+.co{font-weight:600;font-size:16px}
+.meta{color:var(--mute);font-size:13px}
+.track{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin-top:12px}
+.st{text-align:center;font-size:11px;color:var(--mute)}
+.st i{display:block;height:6px;border-radius:3px;background:var(--line);margin-bottom:4px}
+.st.done i{background:var(--accent)}
+.st.next i{background:repeating-linear-gradient(45deg,var(--warn),var(--warn) 4px,transparent 4px,transparent 8px)}
+.st.done,.st.next{color:var(--ink)}
+.tag{font-size:12px;padding:2px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
+.tag.end{background:var(--line);color:var(--mute)}
+.tag.offer{background:var(--accent);color:var(--card)}
+.empty{color:var(--mute);text-align:center;padding:30px}
+footer{margin-top:30px;color:var(--mute);font-size:12px;text-align:center}
+@media (max-width:560px){.stats{grid-template-columns:repeat(2,1fr)}.st{font-size:10px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>求职进度</h1>
+    <p>王煜森 · 南方科技大学计算数学硕士（2027 届） · <span id="upd">加载中…</span></p>
+  </header>
+  <div class="stats" id="stats"></div>
+  <div id="upWrap"></div>
+  <div class="section-title">全部投递</div>
+  <div class="filters" id="filters"></div>
+  <div id="list"></div>
+  <footer>本页数据实时读取自仓库中的 jobs.json</footer>
+</div>
+<script>
+const STAGES=["投递","笔试","一面","二面","终面","Offer"];
+const OUT={active:"进行中",offer:"已录用",rejected:"未通过",withdrawn:"已放弃"};
+let DATA=[],filter="all";
+const esc=s=>String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const today=new Date(Date.now()+8*3600e3).toISOString().slice(0,10);
+function maxDone(a){let m=-1;(a.events||[]).forEach(e=>{if(e.done&&e.stage>m)m=e.stage});return m}
+function nextEv(a){return (a.events||[]).filter(e=>!e.done).sort((x,y)=>x.date.localeCompare(y.date))[0]}
+function render(){
+  const act=DATA.filter(a=>a.outcome==="active");
+  const inProc=DATA.filter(a=>maxDone(a)>=1||nextEv(a));
+  const off=DATA.filter(a=>a.outcome==="offer"||maxDone(a)>=5);
+  document.getElementById("stats").innerHTML=
+    [[DATA.length,"已投递"],[act.length,"进行中"],[inProc.length,"进入笔试/面试"],[off.length,"Offer"]]
+    .map(([n,l])=>`<div class="stat"><b>${n}</b><span>${l}</span></div>`).join("");
+  const ups=[];DATA.forEach(a=>(a.events||[]).forEach(e=>{if(!e.done&&e.date>=today)ups.push({a,e})}));
+  ups.sort((x,y)=>x.e.date.localeCompare(y.e.date));
+  document.getElementById("upWrap").innerHTML=ups.length?`<div class="section-title">近期安排</div><div class="upcoming">${
+    ups.map(({a,e})=>`<div><span class="d">${e.date.slice(5)}</span>${esc(a.company)} · ${STAGES[e.stage]}${e.note?" · "+esc(e.note):""}</div>`).join("")}</div>`:"";
+  const fs=[["all","全部"],["active","进行中"],["inproc","笔试/面试中"],["ended","已结束"]];
+  document.getElementById("filters").innerHTML=fs.map(([k,l])=>`<button class="${filter===k?"on":""}" data-k="${k}">${l}</button>`).join("");
+  document.querySelectorAll("#filters button").forEach(b=>b.onclick=()=>{filter=b.dataset.k;render()});
+  let list=DATA.slice();
+  if(filter==="active")list=list.filter(a=>a.outcome==="active");
+  if(filter==="inproc")list=list.filter(a=>a.outcome==="active"&&(maxDone(a)>=1||nextEv(a)));
+  if(filter==="ended")list=list.filter(a=>a.outcome!=="active");
+  document.getElementById("list").innerHTML=list.length?list.map(a=>{
+    const m=maxDone(a),n=nextEv(a);
+    const track=STAGES.map((s,i)=>`<div class="st ${i<=m?"done":(n&&n.stage===i?"next":"")}"><i></i>${s}</div>`).join("");
+    const cls=a.outcome==="offer"?"offer":(a.outcome==="active"?"":"end");
+    return `<div class="item"><div class="top"><div><span class="co">${esc(a.company)}</span> <span class="meta">${esc(a.role)}${a.city?" · "+esc(a.city):""}</span></div>
+      <div><span class="meta">${esc(a.appliedAt)} 投递</span> <span class="tag ${cls}">${OUT[a.outcome]||"进行中"}</span></div></div>
+      <div class="track">${track}</div>${n?`<div class="meta" style="margin-top:8px">下一步：${n.date} ${STAGES[n.stage]}${n.note?"（"+esc(n.note)+"）":""}</div>`:""}</div>`}).join(""):`<div class="empty">暂无</div>`;
+}
+fetch("jobs.json?t="+Date.now()).then(r=>r.json()).then(j=>{
+  DATA=(j.applications||[]).sort((x,y)=>(y.appliedAt||"").localeCompare(x.appliedAt||""));
+  document.getElementById("upd").textContent="更新于 "+(j.updatedAt||"");render();
+}).catch(()=>{document.getElementById("list").innerHTML='<div class="empty">数据加载失败</div>'});
+</script>
+</body>
+</html>

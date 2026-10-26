@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>求职进度 · 编辑</title>
+<style>
+:root{--bg:#f6f5f1;--card:#fff;--ink:#1d1d1b;--mute:#7a776f;--line:#e4e1d8;--accent:#2f6b4f;--bad:#9b3b3b}
+@media (prefers-color-scheme:dark){:root{--bg:#161614;--card:#201f1c;--ink:#ecebe6;--mute:#9a978d;--line:#34322d;--accent:#7cc39c;--bad:#e08a8a}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:24px 16px 120px}
+h1{font-size:22px;margin:0 0 4px}
+.mute{color:var(--mute);font-size:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;margin:12px 0}
+input,select,textarea{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:6px 8px;width:100%}
+button{font:inherit;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:6px;padding:6px 12px;cursor:pointer}
+button.pri{background:var(--accent);color:#fff;border-color:var(--accent)}
+button.del{color:var(--bad)}
+.grid{display:grid;grid-template-columns:2fr 2fr 1fr 1.2fr 1.2fr;gap:8px}
+.ev{display:grid;grid-template-columns:1fr 1.3fr 2fr auto auto;gap:6px;align-items:center;margin-top:6px}
+.ev label{display:flex;gap:4px;align-items:center;white-space:nowrap;font-size:12px}
+.ev input[type=checkbox]{width:auto}
+.head{display:flex;justify-content:space-between;align-items:center;gap:8px;cursor:pointer}
+.head b{font-size:15px}
+.body{margin-top:10px}
+.bar{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);padding:12px 16px;display:flex;gap:10px;justify-content:center;align-items:center}
+#msg{font-size:13px}
+@media (max-width:640px){.grid{grid-template-columns:1fr 1fr}.ev{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>编辑求职进度</h1>
+  <div class="mute">改完点底部"保存并发布"，公开页约 1 分钟后更新。<a href="./">查看公开页</a></div>
+
+  <div class="card" id="tokenBox">
+    <b>访问令牌</b>
+    <div class="mute" style="margin:4px 0 8px">只保存在本浏览器里，不会上传到网站。换电脑或清缓存后需要重新填。</div>
+    <div style="display:flex;gap:8px"><input id="token" type="password" placeholder="github_pat_..."><button class="pri" onclick="saveToken()">保存</button></div>
+  </div>
+
+  <div style="display:flex;gap:8px;margin-top:16px">
+    <button class="pri" onclick="addApp()">＋ 新增投递</button>
+    <input id="q" placeholder="搜索公司…" oninput="render()" style="max-width:240px">
+  </div>
+  <div id="list"></div>
+</div>
+<div class="bar"><span id="msg" class="mute"></span><button class="pri" id="saveBtn" onclick="publish()">保存并发布</button></div>
+
+<script>
+const OWNER="Wangys7329",REPO="jobs-process",PATH="jobs.json",BRANCH="main";
+const STAGES=["投递","笔试","一面","二面","终面","Offer"];
+const OUT={active:"进行中",offer:"已录用",rejected:"未通过",withdrawn:"已放弃"};
+let DATA={applications:[]},SHA=null,open=new Set(),dirty=false;
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const today=()=>new Date(Date.now()+8*3600e3).toISOString().slice(0,10);
+function getToken(){try{return localStorage.getItem("gh_token")||""}catch(e){return ""}}
+function saveToken(){try{localStorage.setItem("gh_token",$("token").value.trim())}catch(e){}load()}
+function msg(t,bad){$("msg").textContent=t;$("msg").style.color=bad?"var(--bad)":""}
+const b64d=s=>new TextDecoder().decode(Uint8Array.from(atob(s.replace(/\n/g,"")),c=>c.charCodeAt(0)));
+const b64e=s=>{const b=new TextEncoder().encode(s);let r="";for(let i=0;i<b.length;i+=8192)r+=String.fromCharCode(...b.subarray(i,i+8192));return btoa(r)};
+async function api(method,body){
+  const r=await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/${PATH}${method==="GET"?"?ref="+BRANCH+"&t="+Date.now():""}`,{
+    method,headers:{Authorization:"Bearer "+getToken(),Accept:"application/vnd.github+json"},body:body?JSON.stringify(body):undefined});
+  if(!r.ok)throw new Error(r.status+" "+(await r.text()).slice(0,200));
+  return r.json();
+}
+async function load(){
+  const t=getToken();$("token").value=t;
+  if(!t){msg("请先填写访问令牌");return}
+  msg("读取中…");
+  try{const j=await api("GET");SHA=j.sha;DATA=JSON.parse(b64d(j.content));DATA.applications=DATA.applications||[];dirty=false;msg("已读取 "+DATA.applications.length+" 条");$("tokenBox").style.display="none";render()}
+  catch(e){msg("读取失败："+e.message+"（检查令牌是否正确、是否有该仓库的 Contents 读写权限）",true)}
+}
+function render(){
+  const q=$("q").value.trim();
+  const list=DATA.applications.map((a,i)=>({a,i})).filter(({a})=>!q||a.company.includes(q));
+  $("list").innerHTML=list.map(({a,i})=>{
+    const isOpen=open.has(a.id);
+    let m=-1;(a.events||[]).forEach(e=>{if(e.done&&e.stage>m)m=e.stage});
+    return `<div class="card"><div class="head" onclick="toggle('${a.id}')"><div><b>${esc(a.company)||"（未命名）"}</b> <span class="mute">${esc(a.role)} · ${m>=0?STAGES[m]:"—"} · ${OUT[a.outcome]}</span></div><span class="mute">${isOpen?"收起":"编辑"}</span></div>
+    ${isOpen?`<div class="body">
+      <div class="grid">
+        <input value="${esc(a.company)}" placeholder="公司" oninput="setF(${i},'company',this.value)">
+        <input value="${esc(a.role)}" placeholder="岗位" oninput="setF(${i},'role',this.value)">
+        <input value="${esc(a.city)}" placeholder="城市" oninput="setF(${i},'city',this.value)">
+        <input type="date" value="${esc(a.appliedAt)}" oninput="setF(${i},'appliedAt',this.value)">
+        <select onchange="setF(${i},'outcome',this.value)">${Object.entries(OUT).map(([k,v])=>`<option value="${k}" ${a.outcome===k?"selected":""}>${v}</option>`).join("")}</select>
+      </div>
+      <div class="mute" style="margin-top:10px">进度节点</div>
+      ${(a.events||[]).map((e,k)=>`<div class="ev">
+        <select onchange="setE(${i},${k},'stage',+this.value)">${STAGES.map((s,x)=>`<option value="${x}" ${e.stage===x?"selected":""}>${s}</option>`).join("")}</select>
+        <input type="date" value="${esc(e.date)}" oninput="setE(${i},${k},'date',this.value)">
+        <input value="${esc(e.note)}" placeholder="备注（时间、形式等，会公开显示）" oninput="setE(${i},${k},'note',this.value)">
+        <label><input type="checkbox" ${e.done?"checked":""} onchange="setE(${i},${k},'done',this.checked)">已完成</label>
+        <button class="del" onclick="delE(${i},${k})">删</button></div>`).join("")}
+      <div style="display:flex;gap:8px;justify-content:space-between;margin-top:10px">
+        <button onclick="addE(${i})">＋ 添加节点</button>
+        <button class="del" onclick="delApp(${i})">删除这条投递</button>
+      </div></div>`:""}</div>`}).join("");
+}
+function mark(){dirty=true;msg("有未保存的修改")}
+function toggle(id){open.has(id)?open.delete(id):open.add(id);render()}
+function setF(i,k,v){DATA.applications[i][k]=v;mark()}
+function setE(i,k,f,v){DATA.applications[i].events[k][f]=v;mark();if(f!=="note"&&f!=="date")render()}
+function addE(i){const a=DATA.applications[i];a.events=a.events||[];let m=-1;a.events.forEach(e=>{if(e.stage>m)m=e.stage});a.events.push({stage:Math.min(m+1,5),date:today(),done:false,note:""});mark();render()}
+function delE(i,k){DATA.applications[i].events.splice(k,1);mark();render()}
+function addApp(){const id="a"+Date.now().toString(36);DATA.applications.unshift({id,company:"",role:"",city:"",appliedAt:today(),outcome:"active",events:[{stage:0,date:today(),done:true,note:""}]});open.add(id);mark();render()}
+function delApp(i){if(confirm("确定删除「"+(DATA.applications[i].company||"未命名")+"」？")){DATA.applications.splice(i,1);mark();render()}}
+async function publish(){
+  if(!getToken()){msg("请先填写访问令牌",true);return}
+  $("saveBtn").disabled=true;msg("发布中…");
+  try{
+    DATA.updatedAt=today();
+    DATA.applications.sort((x,y)=>(y.appliedAt||"").localeCompare(x.appliedAt||""));
+    const r=await api("PUT",{message:"更新求职进度 "+DATA.updatedAt,content:b64e(JSON.stringify(DATA,null,2)+"\n"),sha:SHA,branch:BRANCH});
+    SHA=r.content.sha;dirty=false;msg("已发布，公开页约 1 分钟后更新");render();
+  }catch(e){msg("发布失败："+e.message+(String(e.message).startsWith("409")?"（别处改过，请刷新页面后重做）":""),true)}
+  $("saveBtn").disabled=false;
+}
+window.onbeforeunload=()=>dirty?"有未保存的修改":undefined;
+load();
+</script>
+</body>
+</html>

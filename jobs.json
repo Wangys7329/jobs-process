@@ -2,6 +2,22 @@
   "updatedAt": "2026-10-26",
   "applications": [
     {
+      "id": "amvp47ezp",
+      "company": "中国机械国际合作股份有限公司",
+      "role": "大数据分析与建模",
+      "city": "北京",
+      "appliedAt": "2026-10-26",
+      "outcome": "active",
+      "events": [
+        {
+          "stage": 0,
+          "date": "2026-10-26",
+          "done": true,
+          "note": ""
+        }
+      ]
+    },
+    {
       "id": "amvp39940",
       "company": "中电建新能源集团股份有限公司",
       "role": "华中分公司电力营销中心交易专员",

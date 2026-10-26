@@ -2,6 +2,22 @@
   "updatedAt": "2026-10-26",
   "applications": [
     {
+      "id": "amvp39940",
+      "company": "中电建新能源集团股份有限公司",
+      "role": "华中分公司电力营销中心交易专员",
+      "city": "长沙",
+      "appliedAt": "2026-10-26",
+      "outcome": "active",
+      "events": [
+        {
+          "stage": 0,
+          "date": "2026-10-26",
+          "done": true,
+          "note": ""
+        }
+      ]
+    },
+    {
       "id": "b480xsdl967dekiyrd1m",
       "company": "中国大唐",
       "role": "电力交易管培生",

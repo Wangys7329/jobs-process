@@ -2,6 +2,86 @@
   "updatedAt": "2026-10-29",
   "applications": [
     {
+      "id": "dg8zxnokh13zv23v4azl",
+      "company": "中远海运数字化综合财产保险自保有限公司",
+      "role": "数字化综合管理岗",
+      "city": "上海",
+      "appliedAt": "2026-10-29",
+      "outcome": "active",
+      "events": [
+        {
+          "stage": 0,
+          "date": "2026-10-29",
+          "done": true,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "0ccbnb3vii6lwtbvpfga",
+      "company": "中国三峡新能源（集团）股份有限公司",
+      "role": "数理统计方向",
+      "city": "北京",
+      "appliedAt": "2026-10-29",
+      "outcome": "active",
+      "events": [
+        {
+          "stage": 0,
+          "date": "2026-10-29",
+          "done": true,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "oveobjvheq6guuop8c5f",
+      "company": "中国兵器工业集团有限公司",
+      "role": "数字样机仿真验证",
+      "city": "长沙",
+      "appliedAt": "2026-10-29",
+      "outcome": "active",
+      "events": [
+        {
+          "stage": 0,
+          "date": "2026-10-29",
+          "done": true,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "6thgqn4s74jon2n0hdbm",
+      "company": "中南电建中南勘测设计研究院有限公司",
+      "role": "人工智能类",
+      "city": "长沙",
+      "appliedAt": "2026-10-29",
+      "outcome": "active",
+      "events": [
+        {
+          "stage": 0,
+          "date": "2026-10-29",
+          "done": true,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "2rj01whyw5lncgw518mk",
+      "company": "中原海运能源运输公司",
+      "role": "收益管理计划经营分析",
+      "city": "上海",
+      "appliedAt": "2026-10-29",
+      "outcome": "active",
+      "events": [
+        {
+          "stage": 0,
+          "date": "2026-10-29",
+          "done": true,
+          "note": ""
+        }
+      ]
+    },
+    {
       "id": "0hslrgtvj6i5fuwt74x4",
       "company": "上海航空工业集团有限公司",
       "role": "软件开发（人工智能）",
@@ -34,7 +114,7 @@
         {
           "stage": 2,
           "date": "2026-10-29",
-          "done": false,
+          "done": true,
           "note": "11:00群面"
         }
       ]

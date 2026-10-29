@@ -1,24 +1,78 @@
 {
-  "updatedAt": "2026-10-26",
+  "updatedAt": "2026-10-29",
   "applications": [
     {
-      "id": "amvp47ezp",
-      "company": "中国机械国际合作股份有限公司",
-      "role": "大数据分析与建模",
-      "city": "北京",
-      "appliedAt": "2026-10-26",
+      "id": "0hslrgtvj6i5fuwt74x4",
+      "company": "上海航空工业集团有限公司",
+      "role": "软件开发（人工智能）",
+      "city": "上海",
+      "appliedAt": "2026-10-28",
       "outcome": "active",
       "events": [
         {
           "stage": 0,
-          "date": "2026-10-26",
+          "date": "2026-10-28",
           "done": true,
           "note": ""
         }
       ]
     },
     {
-      "id": "amvp39940",
+      "id": "6to3qltgfqa591le8my7",
+      "company": "中国平安产险深圳分公司",
+      "role": "管培生",
+      "city": "深圳",
+      "appliedAt": "2026-10-27",
+      "outcome": "active",
+      "events": [
+        {
+          "stage": 0,
+          "date": "2026-10-27",
+          "done": true,
+          "note": ""
+        },
+        {
+          "stage": 2,
+          "date": "2026-10-29",
+          "done": false,
+          "note": "11:00群面"
+        }
+      ]
+    },
+    {
+      "id": "o3kcldlx28d4u26hayjm",
+      "company": "中国联通",
+      "role": "长沙技术研发/广州AI研发",
+      "city": "",
+      "appliedAt": "2026-10-27",
+      "outcome": "active",
+      "events": [
+        {
+          "stage": 0,
+          "date": "2026-10-27",
+          "done": true,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "39ww2lpuf5u95gyzrh7a",
+      "company": "华润银行总行",
+      "role": "管培生（职能线条）",
+      "city": "",
+      "appliedAt": "2026-10-27",
+      "outcome": "active",
+      "events": [
+        {
+          "stage": 0,
+          "date": "2026-10-27",
+          "done": true,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "86l2cv8wbz07g4vor6xo",
       "company": "中电建新能源集团股份有限公司",
       "role": "华中分公司电力营销中心交易专员",
       "city": "长沙",
@@ -50,12 +104,28 @@
       ]
     },
     {
+      "id": "g75xhdinl0dsd3ki0f85",
+      "company": "中国机械国际合作股份有限公司",
+      "role": "大数据分析与建模2027届清朗计划",
+      "city": "北京",
+      "appliedAt": "2026-10-26",
+      "outcome": "active",
+      "events": [
+        {
+          "stage": 0,
+          "date": "2026-10-26",
+          "done": true,
+          "note": ""
+        }
+      ]
+    },
+    {
       "id": "yc9uod0os94a19kprcl1",
       "company": "迈瑞动物医疗",
       "role": "计划工程师",
       "city": "",
       "appliedAt": "2026-10-26",
-      "outcome": "active",
+      "outcome": "withdrawn",
       "events": [
         {
           "stage": 0,
@@ -66,7 +136,7 @@
         {
           "stage": 2,
           "date": "2026-10-27",
-          "done": false,
+          "done": true,
           "note": "10:30"
         }
       ]
